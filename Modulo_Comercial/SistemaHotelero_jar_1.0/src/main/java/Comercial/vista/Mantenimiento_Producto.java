@@ -442,7 +442,6 @@ public class Mantenimiento_Producto extends javax.swing.JInternalFrame {
         productoAActualizar.setUnidadProducto(Txt_unidad.getText());
         productoDAO.update(productoAActualizar);
         JOptionPane.showMessageDialog(null, "Modificación Exitosa.");
-
         llenadoDeTablas();
         limpiar();
     }//GEN-LAST:event_Btn_ModificarActionPerformed
