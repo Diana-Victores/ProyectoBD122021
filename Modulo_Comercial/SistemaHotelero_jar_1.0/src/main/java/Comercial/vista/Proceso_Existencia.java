@@ -126,24 +126,43 @@ public class Proceso_Existencia extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
 
+        jButton6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButton6.setText("Ayuda");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalle Existencia"));
 
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("ID existencia");
 
+        Txt_id.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setText("Producto codigo");
 
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setText("Bodega Codigo");
 
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel4.setText("Cantidad Existencia");
 
+        Txt_cantidad.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        Txt_fechaentrada.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel5.setText("Fecha entrada");
 
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel6.setText("Fecha Salida");
 
+        Txt_fechasalida.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel7.setText("Estatus");
 
+        Txt_estatus.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        Btn_guardar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Btn_guardar.setText("Guardar");
         Btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,6 +170,7 @@ public class Proceso_Existencia extends javax.swing.JInternalFrame {
             }
         });
 
+        Btn_Modificar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Btn_Modificar.setText("Modificar");
         Btn_Modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,6 +178,7 @@ public class Proceso_Existencia extends javax.swing.JInternalFrame {
             }
         });
 
+        Btn_Buscar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Btn_Buscar.setText("Buscar");
         Btn_Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,6 +186,7 @@ public class Proceso_Existencia extends javax.swing.JInternalFrame {
             }
         });
 
+        Btn_Eliminar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Btn_Eliminar.setText("Eliminar");
         Btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,12 +194,17 @@ public class Proceso_Existencia extends javax.swing.JInternalFrame {
             }
         });
 
+        Btn_Reporte.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Btn_Reporte.setText("Reporte");
         Btn_Reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_ReporteActionPerformed(evt);
             }
         });
+
+        Tbx_bodega.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        Tbx_producto.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -230,7 +257,7 @@ public class Proceso_Existencia extends javax.swing.JInternalFrame {
                     .addComponent(Txt_fechaentrada)
                     .addComponent(Txt_fechasalida)
                     .addComponent(Txt_estatus, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
