@@ -5,12 +5,12 @@
  */
 package Comercial.vista;
 
-import Comercial.datos.BodegaDAO;
+
 import Comercial.datos.Conexion;
-import Comercial.dominio.Bodega;
+import Comercial.datos.Tipo_DocumentoDAO;
+import Comercial.dominio.Tipo_Documento;
 import java.io.File;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,25 +26,25 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Diana
  */
-public class Mantenimiento_Bodega extends javax.swing.JInternalFrame {
+public class Proceso_Tipo_Documento extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Mantenimiento_Bodega
+     * Creates new form Proceso_Tipo_Documento
      */
-      public void llenadoDeTablas() {
+     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("ID Bodega");
-        modelo.addColumn("Nombre Bodega");
-        modelo.addColumn("Estatus Bodega");
-        BodegaDAO bodegaDAO = new BodegaDAO();
+        modelo.addColumn("CODIGO");
+        modelo.addColumn("Nombre Documento");
+        modelo.addColumn("Estatus Documento");
+        Tipo_DocumentoDAO documentoDAO = new Tipo_DocumentoDAO();
 
-        List<Bodega> bodega = bodegaDAO.select();
-        Tbl_tablabodega.setModel(modelo);
+        List<Tipo_Documento> documento = documentoDAO.select();
+        Tbl_tabladocumento.setModel(modelo);
         String[] dato = new String[3];
-        for (int i = 0; i < bodega.size(); i++) {
-            dato[0] = bodega.get(i).getPKcodigoBodega();
-            dato[1] = bodega.get(i).getNombreBodega();
-            dato[2] = bodega.get(i).getEstatusBodega();
+        for (int i = 0; i < documento.size(); i++) {
+            dato[0] = documento.get(i).getPk_codigo_tipo_documento();
+            dato[1] = documento.get(i).getNombre_tipo_documento();
+            dato[2] = documento.get(i).getEstatus_tipo_documento();
 
             //System.out.println("vendedor:" + vendedores);
             modelo.addRow(dato);
@@ -52,22 +52,21 @@ public class Mantenimiento_Bodega extends javax.swing.JInternalFrame {
     }
 
     public void buscar() {
-        Bodega bodegaAConsultar = new Bodega();
-        BodegaDAO bodegaDAO = new BodegaDAO();
-        bodegaAConsultar.setPKcodigoBodega(Txt_id.getText());
-        bodegaAConsultar = bodegaDAO.query(bodegaAConsultar);
-        Txt_nombre.setText(bodegaAConsultar.getNombreBodega());
-        Txt_estatus.setText(String.valueOf(bodegaAConsultar.getEstatusBodega()));
+        Tipo_Documento documentoAConsultar = new Tipo_Documento();
+        Tipo_DocumentoDAO documentoDAO = new Tipo_DocumentoDAO();
+        documentoAConsultar.setPk_codigo_tipo_documento(Txt_id.getText());
+        documentoAConsultar = documentoDAO.query(documentoAConsultar);
+        Txt_nombredocumento.setText(documentoAConsultar.getNombre_tipo_documento());
+        Txt_estatus.setText(String.valueOf(documentoAConsultar.getEstatus_tipo_documento()));
 //        cbx_bodega.setSelectedItem(String.valueOf(0));
     }
 
     public void limpiar() {
         Txt_id.setText("");
-        Txt_nombre.setText("");
+        Txt_nombredocumento.setText("");
         Txt_estatus.setText("");
-//        cbx_bodega.setSelectedIndex(0);
-    }
-    public Mantenimiento_Bodega() {
+      }   
+    public Proceso_Tipo_Documento() {
         initComponents();
         llenadoDeTablas();
     }
@@ -82,34 +81,44 @@ public class Mantenimiento_Bodega extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        Txt_id = new javax.swing.JTextField();
-        Btn_Buscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        Txt_nombre = new javax.swing.JTextField();
+        Txt_id = new javax.swing.JTextField();
+        Txt_nombredocumento = new javax.swing.JTextField();
         Txt_estatus = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        Btn_Buscar = new javax.swing.JButton();
         Btn_Guardar = new javax.swing.JButton();
         Btn_Modificar = new javax.swing.JButton();
         Btn_Eliminar = new javax.swing.JButton();
         Btn_Reporte = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Tbl_tablabodega = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        Tbl_tabladocumento = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
         Btn_Ayuda = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setVisible(true);
+        setResizable(true);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalle"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo_Documento_Detalle"));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel2.setText("ID ");
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel1.setText("Codigo Documento");
+
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel2.setText("Nombre Documento");
+
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel3.setText("Estatus Documento");
 
         Txt_id.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        Txt_nombredocumento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        Txt_estatus.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         Btn_Buscar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Btn_Buscar.setText("Buscar");
@@ -118,21 +127,6 @@ public class Mantenimiento_Bodega extends javax.swing.JInternalFrame {
                 Btn_BuscarActionPerformed(evt);
             }
         });
-
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel3.setText("Nombre Bodega");
-
-        Txt_nombre.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
-        Txt_estatus.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        Txt_estatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Txt_estatusActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel4.setText("Estado Bodega");
 
         Btn_Guardar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Btn_Guardar.setText("Guardar");
@@ -170,65 +164,64 @@ public class Mantenimiento_Bodega extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Btn_Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(Btn_Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(Btn_Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(242, 242, 242))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(10, 10, 10)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(26, 26, 26)
+                                .addComponent(Txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(22, 22, 22)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Txt_nombredocumento)
+                                    .addComponent(Txt_estatus)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(Btn_Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(Btn_Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Btn_Buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Btn_Eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Txt_estatus, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(Btn_Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(Btn_Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Btn_Buscar)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(Txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(Txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Txt_estatus, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(36, 36, 36)
+                    .addComponent(jLabel1)
+                    .addComponent(Txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Btn_Buscar))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(Txt_nombredocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(Txt_estatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_Guardar)
                     .addComponent(Btn_Modificar)
                     .addComponent(Btn_Eliminar)
                     .addComponent(Btn_Reporte))
-                .addGap(28, 28, 28))
+                .addGap(31, 31, 31))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalle"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo_Documento_Detalle"));
 
-        Tbl_tablabodega.setModel(new javax.swing.table.DefaultTableModel(
+        Tbl_tabladocumento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -239,7 +232,7 @@ public class Mantenimiento_Bodega extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(Tbl_tablabodega);
+        jScrollPane1.setViewportView(Tbl_tabladocumento);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -247,18 +240,19 @@ public class Mantenimiento_Bodega extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Mantenimiento Bodega");
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setText("TIPO DE DOCUMENTO");
 
         Btn_Ayuda.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Btn_Ayuda.setText("Ayuda");
@@ -272,68 +266,59 @@ public class Mantenimiento_Bodega extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Btn_Ayuda, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(193, 193, 193)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Btn_Ayuda, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(Btn_Ayuda, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(Btn_Ayuda))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_BuscarActionPerformed
-        // TODO add your handling code here:
-        buscar();
-
-    }//GEN-LAST:event_Btn_BuscarActionPerformed
-
     private void Btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_GuardarActionPerformed
         // TODO add your handling code here:
-        //        MDI_Components mdi_Components = new MDI_Components();
         String id = "0";
-        Mantenimiento_Bodega mntbodegaDAO = new Mantenimiento_Bodega();
-        BodegaDAO bodegaDAO = new BodegaDAO();
-        Bodega bodegaAInsertar = new Bodega();
+        Tipo_Documento prodocumentoDAO = new Tipo_Documento();
+        Tipo_DocumentoDAO documentoDAO = new Tipo_DocumentoDAO();
+        Tipo_Documento documentoAInsertar = new Tipo_Documento();
         //String cbxbodega = cbx_bodega.getSelectedItem().toString();
-        bodegaAInsertar.setPKcodigoBodega(Txt_id.getText());
-        bodegaAInsertar.setNombreBodega(Txt_nombre.getText());
-        bodegaAInsertar.setEstatusBodega(Txt_estatus.getText());
-        bodegaDAO.insert(bodegaAInsertar);
-        JOptionPane.showMessageDialog(null, "Registro Exitoso.");
+        documentoAInsertar.setPk_codigo_tipo_documento(Txt_id.getText());
+        documentoAInsertar.setNombre_tipo_documento(Txt_nombredocumento.getText());
+        documentoAInsertar.setEstatus_tipo_documento(Txt_estatus.getText());
+        documentoDAO.insert(documentoAInsertar);
         llenadoDeTablas();
         limpiar();
     }//GEN-LAST:event_Btn_GuardarActionPerformed
 
     private void Btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ModificarActionPerformed
         // TODO add your handling code here:
-       
-        BodegaDAO bodegaDAO = new BodegaDAO();
-        Bodega bodegaAActualizar = new Bodega();
-        bodegaAActualizar.setPKcodigoBodega(Txt_id.getText());
-        bodegaAActualizar.setNombreBodega(Txt_nombre.getText());
-        bodegaAActualizar.setEstatusBodega(Txt_estatus.getText());
-        bodegaDAO.update(bodegaAActualizar);
+        Tipo_DocumentoDAO documentoDAO = new Tipo_DocumentoDAO();
+        Tipo_Documento documentoAActualizar = new Tipo_Documento();
+        documentoAActualizar.setPk_codigo_tipo_documento(Txt_id.getText());
+        documentoAActualizar.setNombre_tipo_documento(Txt_nombredocumento.getText());
+        documentoAActualizar.setEstatus_tipo_documento(Txt_estatus.getText());
+        documentoDAO.update(documentoAActualizar);
         JOptionPane.showMessageDialog(null, "Modificación Exitosa.");
 
         llenadoDeTablas();
@@ -342,20 +327,23 @@ public class Mantenimiento_Bodega extends javax.swing.JInternalFrame {
 
     private void Btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EliminarActionPerformed
         // TODO add your handling code here:
-        BodegaDAO bodegaDAO = new BodegaDAO();
-        Bodega bodegaAEliminar = new Bodega();
-        bodegaAEliminar.setPKcodigoBodega(Txt_id.getText());
-        bodegaDAO.delete(bodegaAEliminar);
+        Tipo_DocumentoDAO documentoDAO = new Tipo_DocumentoDAO();
+        Tipo_Documento documentoAEliminar = new Tipo_Documento();
+        documentoAEliminar.setPk_codigo_tipo_documento(Txt_id.getText());
+        documentoDAO.delete(documentoAEliminar);
         JOptionPane.showMessageDialog(null, "Registro Eliminado.");
 
         llenadoDeTablas();
         limpiar();
     }//GEN-LAST:event_Btn_EliminarActionPerformed
-    
+
+    private void Btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_BuscarActionPerformed
+        // TODO add your handling code here:
+        buscar ();
+    }//GEN-LAST:event_Btn_BuscarActionPerformed
     private Connection connection = null;
     private void Btn_ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ReporteActionPerformed
         // TODO add your handling code here:
-        
         Map p = new HashMap();
         JasperReport report;
         JasperPrint print;
@@ -363,25 +351,24 @@ public class Mantenimiento_Bodega extends javax.swing.JInternalFrame {
         try {
             connection = Conexion.getConnection();
             report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                    + "/src/main/java/Comercial/reportes/bodega.jrxml");
+                    + "/src/main/java/Comercial/reportes/tipo_documento.jrxml");
             print = JasperFillManager.fillReport(report, p, connection);
             JasperViewer view = new JasperViewer(print, false);
-            view.setTitle("Reporte Mantenimiento Bodega");
+            view.setTitle("Reporte Tipo Documento");
             view.setVisible(true);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }//GEN-LAST:event_Btn_ReporteActionPerformed
 
     private void Btn_AyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_AyudaActionPerformed
         // TODO add your handling code here:
-        try {
-            if ((new File("src\\main\\java\\Comercial\\reportes\\AyudaMantenimientoBodega.chm")).exists()) {
+         try {
+            if ((new File("src\\main\\java\\Comercial\\reportes\\AyudaTipoDocumento.chm")).exists()) {
                 Process p = Runtime
                 .getRuntime()
-                .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\Comercial\\reportes\\AyudaMantenimientoBodega.chm");
+                .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\Comercial\\reportes\\AyudaTipoDocumento.chm");
                 p.waitFor();
             } else {
                 JOptionPane.showMessageDialog(null, "La ayuda no Fue encontrada");
@@ -390,15 +377,7 @@ public class Mantenimiento_Bodega extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
-        
-        
-        
     }//GEN-LAST:event_Btn_AyudaActionPerformed
-
-    private void Txt_estatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_estatusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Txt_estatusActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -408,10 +387,10 @@ public class Mantenimiento_Bodega extends javax.swing.JInternalFrame {
     private javax.swing.JButton Btn_Guardar;
     private javax.swing.JButton Btn_Modificar;
     private javax.swing.JButton Btn_Reporte;
-    private javax.swing.JTable Tbl_tablabodega;
+    private javax.swing.JTable Tbl_tabladocumento;
     private javax.swing.JTextField Txt_estatus;
     private javax.swing.JTextField Txt_id;
-    private javax.swing.JTextField Txt_nombre;
+    private javax.swing.JTextField Txt_nombredocumento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

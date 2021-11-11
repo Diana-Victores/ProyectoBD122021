@@ -1,5 +1,6 @@
 package Comercial.vista;
 
+import Comercial.dominio.Tipo_Documento;
 import seguridad.vista.*;
 //import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Dimension;
@@ -35,6 +36,7 @@ public class MDIComercial extends javax.swing.JFrame {
     private Mantenimiento_Vendedor Mantenimiento_Vendedor;
     private Proceso_Existencia Proceso_Existencia;
     private Mantenimiento_TransporteRuta Mantenimiento_TransporteRuta;
+    private Proceso_Tipo_Documento ProcesoTipoDocumento;
     public static JLabel logo = new JLabel();
 
     public MDIComercial() throws UnknownHostException {
@@ -100,6 +102,7 @@ public class MDIComercial extends javax.swing.JFrame {
         FacturaCompras = new javax.swing.JMenuItem();
         P_producto = new javax.swing.JMenu();
         ProcesoExistencia = new javax.swing.JCheckBoxMenuItem();
+        Item_tipodocumento = new javax.swing.JCheckBoxMenuItem();
         jMenu12 = new javax.swing.JMenu();
         jMenu13 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -277,6 +280,15 @@ public class MDIComercial extends javax.swing.JFrame {
             }
         });
         P_producto.add(ProcesoExistencia);
+
+        Item_tipodocumento.setSelected(true);
+        Item_tipodocumento.setText("Tipo Documento");
+        Item_tipodocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Item_tipodocumentoActionPerformed(evt);
+            }
+        });
+        P_producto.add(Item_tipodocumento);
 
         jMenu4.add(P_producto);
 
@@ -539,6 +551,21 @@ public class MDIComercial extends javax.swing.JFrame {
 
     }//GEN-LAST:event_MantenimientoRutaActionPerformed
 
+    private void Item_tipodocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Item_tipodocumentoActionPerformed
+        // TODO add your handling code here:
+        ProcesoTipoDocumento = new Proceso_Tipo_Documento();
+        jdpescritorio.add(ProcesoTipoDocumento);
+        Dimension desktopSize = jdpescritorio.getSize();
+        Dimension FrameSize = ProcesoTipoDocumento.getSize();
+        ProcesoTipoDocumento.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        ProcesoTipoDocumento.show();
+        logo.setVisible(true);
+        ProcesoTipoDocumento.setVisible(true);
+        
+        
+        
+    }//GEN-LAST:event_Item_tipodocumentoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -571,6 +598,7 @@ public class MDIComercial extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem Item_Mntunidad;
     private javax.swing.JCheckBoxMenuItem Item_marca;
     public static javax.swing.JMenuItem Item_proveedor;
+    private javax.swing.JCheckBoxMenuItem Item_tipodocumento;
     public static javax.swing.JMenu M_ccompras;
     public static javax.swing.JMenuItem M_cliente;
     public static javax.swing.JMenu M_compras;

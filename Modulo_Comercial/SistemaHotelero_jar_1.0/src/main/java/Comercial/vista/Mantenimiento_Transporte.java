@@ -383,9 +383,9 @@ public class Mantenimiento_Transporte extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addGap(177, 177, 177)
-                .addComponent(Btn_Ayuda)
-                .addGap(124, 124, 124))
+                .addGap(247, 247, 247)
+                .addComponent(Btn_Ayuda, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -404,7 +404,7 @@ public class Mantenimiento_Transporte extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -413,7 +413,7 @@ public class Mantenimiento_Transporte extends javax.swing.JInternalFrame {
     private void Btn_AyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_AyudaActionPerformed
         // TODO add your handling code here:
         try {
-            if ((new File("src\\main\\java\\Comercial\\reportes\\AyudaMantenimientoLinea.chm")).exists()) {
+            if ((new File("src\\main\\java\\Comercial\\reportes\\AyudaMantenimientoTransporte.chm")).exists()) {
                 Process p = Runtime
                 .getRuntime()
                 .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\Comercial\\reportes\\AyudaMantenimientoTransporte.chm");
