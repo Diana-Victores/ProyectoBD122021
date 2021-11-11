@@ -94,7 +94,6 @@ public class Mantenimiento_Producto extends javax.swing.JInternalFrame {
 //            String valor = Cbx_unidad.getSelectedItem().toString();
 //        }
 //    }
-
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("ID Producto");
@@ -162,7 +161,7 @@ public class Mantenimiento_Producto extends javax.swing.JInternalFrame {
     public Mantenimiento_Producto() {
         initComponents();
         llenadoDeTablas();
-       
+
     }
 
     /**
@@ -542,7 +541,7 @@ public class Mantenimiento_Producto extends javax.swing.JInternalFrame {
 
     private void Btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_GuardarActionPerformed
         // TODO add your handling code here:
-        
+
         ProductoDAO productoDAO = new ProductoDAO();
         Producto productoAInsertar = new Producto();
         productoAInsertar.setPKcodigoProducto(String.valueOf(Txt_id.getText()));
@@ -615,33 +614,33 @@ public class Mantenimiento_Producto extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_Btn_AyudaActionPerformed
- private Connection connection = null;
+    private Connection connection = null;
     private void Btn_ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ReporteActionPerformed
         // TODO add your handling code here:
         Map p = new HashMap();
-                JasperReport report;
-                JasperPrint print;
-                try {
-                    connection = Conexion.getConnection();
-                    report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                            + "/src/main/java/Comercial/reportes/producto.jrxml");
-                    print = JasperFillManager.fillReport(report, p, connection);
-                    JasperViewer view = new JasperViewer(print, false);
-                    view.setTitle("Reporte de Transporte");
-                    view.setVisible(true);
-        
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        JasperReport report;
+        JasperPrint print;
+        try {
+            connection = Conexion.getConnection();
+            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                    + "/src/main/java/Comercial/reportes/producto.jrxml");
+            print = JasperFillManager.fillReport(report, p, connection);
+            JasperViewer view = new JasperViewer(print, false);
+            view.setTitle("Reporte de Transporte");
+            view.setVisible(true);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_Btn_ReporteActionPerformed
 
     private void Btn_ayudalineapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ayudalineapActionPerformed
         // TODO add your handling code here:
-         try {
+        try {
             if ((new File("src\\main\\java\\Comercial\\reportes\\AyudaLineaProducto.chm")).exists()) {
                 Process p = Runtime
-                .getRuntime()
-                .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\Comercial\\reportes\\AyudaLineaProducto.chm");
+                        .getRuntime()
+                        .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\Comercial\\reportes\\AyudaLineaProducto.chm");
                 p.waitFor();
             } else {
                 JOptionPane.showMessageDialog(null, "La ayuda no Fue encontrada");
@@ -650,7 +649,7 @@ public class Mantenimiento_Producto extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-         
+
     }//GEN-LAST:event_Btn_ayudalineapActionPerformed
 
     private void Btn_ayudamarcapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ayudamarcapActionPerformed
@@ -658,8 +657,8 @@ public class Mantenimiento_Producto extends javax.swing.JInternalFrame {
         try {
             if ((new File("src\\main\\java\\Comercial\\reportes\\AyudaMarcaProducto.chm")).exists()) {
                 Process p = Runtime
-                .getRuntime()
-                .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\Comercial\\reportes\\AyudaMarcaProducto.chm");
+                        .getRuntime()
+                        .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\Comercial\\reportes\\AyudaMarcaProducto.chm");
                 p.waitFor();
             } else {
                 JOptionPane.showMessageDialog(null, "La ayuda no Fue encontrada");
@@ -675,8 +674,8 @@ public class Mantenimiento_Producto extends javax.swing.JInternalFrame {
         try {
             if ((new File("src\\main\\java\\Comercial\\reportes\\AyudaBodegaProducto.chm")).exists()) {
                 Process p = Runtime
-                .getRuntime()
-                .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\Comercial\\reportes\\AyudaBodegaProducto.chm");
+                        .getRuntime()
+                        .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\Comercial\\reportes\\AyudaBodegaProducto.chm");
                 p.waitFor();
             } else {
                 JOptionPane.showMessageDialog(null, "La ayuda no Fue encontrada");
@@ -685,8 +684,8 @@ public class Mantenimiento_Producto extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-             
-    
+
+
     }//GEN-LAST:event_Btn_ayudabodegapActionPerformed
 
     private void Btn_ayudaunidadpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ayudaunidadpActionPerformed
@@ -694,8 +693,8 @@ public class Mantenimiento_Producto extends javax.swing.JInternalFrame {
         try {
             if ((new File("src\\main\\java\\Comercial\\reportes\\AyudaUnidadProducto.chm")).exists()) {
                 Process p = Runtime
-                .getRuntime()
-                .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\Comercial\\reportes\\AyudaUnidadProducto.chm");
+                        .getRuntime()
+                        .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\Comercial\\reportes\\AyudaUnidadProducto.chm");
                 p.waitFor();
             } else {
                 JOptionPane.showMessageDialog(null, "La ayuda no Fue encontrada");
@@ -704,8 +703,8 @@ public class Mantenimiento_Producto extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-             
-        
+
+
     }//GEN-LAST:event_Btn_ayudaunidadpActionPerformed
 
 

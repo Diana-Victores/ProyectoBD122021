@@ -10,6 +10,7 @@ package Comercial.dominio;
  * @author Diana
  */
 public class Tipo_Documento {
+
     String Pk_codigo_tipo_documento;
     String nombre_tipo_documento;
     String estatus_tipo_documento;
@@ -42,9 +43,5 @@ public class Tipo_Documento {
     public String toString() {
         return "Tipo_Documento{" + "Pk_codigo_tipo_documento=" + Pk_codigo_tipo_documento + ", nombre_tipo_documento=" + nombre_tipo_documento + ", estatus_tipo_documento=" + estatus_tipo_documento + '}';
     }
-    
-    
-    
-    
-    
+
 }

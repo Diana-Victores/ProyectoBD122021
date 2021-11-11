@@ -30,9 +30,9 @@ public class Proceso_Existencia extends javax.swing.JInternalFrame {
     /**
      * Creates new form Proceso_Existencia
      */
-       public void llenadoDeTablas() {
+    public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
-       
+
         modelo.addColumn("Producto");
         modelo.addColumn("Bodega");
         modelo.addColumn("Cantidad Existencia");
@@ -45,7 +45,7 @@ public class Proceso_Existencia extends javax.swing.JInternalFrame {
         Tbl_existencia.setModel(modelo);
         String[] dato = new String[7];
         for (int i = 0; i < existencia.size(); i++) {
-            
+
             dato[0] = existencia.get(i).getPk_codigo_producto();
             dato[1] = existencia.get(i).getPk_codigo_bodega();
             dato[2] = existencia.get(i).getCantidad_existencia();
@@ -62,7 +62,7 @@ public class Proceso_Existencia extends javax.swing.JInternalFrame {
         ExistenciaDAO existenciaDAO = new ExistenciaDAO();
         existenciaAConsultar.setPk_codigo_producto(Tbx_producto.getText());
         existenciaAConsultar = existenciaDAO.query(existenciaAConsultar);
-       
+
         Tbx_bodega.setText(existenciaAConsultar.getPk_codigo_bodega());
         Txt_cantidad.setText(existenciaAConsultar.getCantidad_existencia());
         Txt_fechaentrada.setText(String.valueOf(existenciaAConsultar.getFecha_entrada_existencia()));
@@ -72,7 +72,7 @@ public class Proceso_Existencia extends javax.swing.JInternalFrame {
     }
 
     public void limpiar() {
-        
+
         Tbx_producto.setText("");
         Tbx_bodega.setText("");
         Txt_cantidad.setText("");
@@ -81,7 +81,7 @@ public class Proceso_Existencia extends javax.swing.JInternalFrame {
         Txt_estatus.setText("");
 
     }
-    
+
     public Proceso_Existencia() {
         initComponents();
         llenadoDeTablas();
@@ -358,7 +358,7 @@ public class Proceso_Existencia extends javax.swing.JInternalFrame {
         Existencia existenciaAInsertar = new Existencia();
         //        String cbxproducto = Cbx_producto.getSelectedItem().toString();
         existenciaAInsertar.setPk_codigo_producto(Tbx_producto.getText());
-     
+
         existenciaAInsertar.setPk_codigo_bodega(Tbx_bodega.getText());
         existenciaAInsertar.setCantidad_existencia(Txt_cantidad.getText());
         existenciaAInsertar.setFecha_entrada_existencia(Txt_fechaentrada.getText());
@@ -376,7 +376,7 @@ public class Proceso_Existencia extends javax.swing.JInternalFrame {
         ExistenciaDAO existenciaDAO = new ExistenciaDAO();
         Existencia existenciaAActualizar = new Existencia();
         existenciaAActualizar.setPk_codigo_producto(Tbx_producto.getText());
-        
+
         existenciaAActualizar.setPk_codigo_bodega(Tbx_bodega.getText());
         existenciaAActualizar.setCantidad_existencia(Txt_cantidad.getText());
         existenciaAActualizar.setFecha_entrada_existencia(Txt_fechaentrada.getText());
@@ -407,30 +407,30 @@ public class Proceso_Existencia extends javax.swing.JInternalFrame {
     private Connection connection = null;
     private void Btn_ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ReporteActionPerformed
         // TODO add your handling code here:
-     Map p = new HashMap();
-                JasperReport report;
-                JasperPrint print;
-                try {
-                    connection = Conexion.getConnection();
-                    report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                            + "/src/main/java/Comercial/reportes/existencia.jrxml");
-                    print = JasperFillManager.fillReport(report, p, connection);
-                    JasperViewer view = new JasperViewer(print, false);
-                    view.setTitle("Reporte de Proceso Existencia");
-                    view.setVisible(true);
-        
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        Map p = new HashMap();
+        JasperReport report;
+        JasperPrint print;
+        try {
+            connection = Conexion.getConnection();
+            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                    + "/src/main/java/Comercial/reportes/existencia.jrxml");
+            print = JasperFillManager.fillReport(report, p, connection);
+            JasperViewer view = new JasperViewer(print, false);
+            view.setTitle("Reporte de Proceso Existencia");
+            view.setVisible(true);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_Btn_ReporteActionPerformed
 
     private void Btn_AyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_AyudaActionPerformed
         // TODO add your handling code here:
-         try {
+        try {
             if ((new File("src\\main\\java\\Comercial\\reportes\\AyudaProcesoExistencia.chm")).exists()) {
                 Process p = Runtime
-                .getRuntime()
-                .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\Comercial\\reportes\\AyudaProcesoExistencia.chm");
+                        .getRuntime()
+                        .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\Comercial\\reportes\\AyudaProcesoExistencia.chm");
                 p.waitFor();
             } else {
                 JOptionPane.showMessageDialog(null, "La ayuda no Fue encontrada");
@@ -439,7 +439,7 @@ public class Proceso_Existencia extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
     }//GEN-LAST:event_Btn_AyudaActionPerformed
-}  
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Ayuda;
